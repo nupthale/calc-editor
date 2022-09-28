@@ -195,6 +195,8 @@ export class Caret {
             return;
         }
 
+        this.offset++;
+        this.updatePos(this.offset);
     }
 
     prev() {

@@ -24,6 +24,6 @@ export default function CalcEditorX2() {
     }, []);
 
  return (
-  <div ref={containerRef}></div>
+  <div style={{ width: 414, border: '1px solid rgba(31,35,41, 0.15)' }} ref={containerRef}></div>
  );
 }

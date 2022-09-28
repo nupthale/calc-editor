@@ -27,6 +27,8 @@ export default function CalcFunction() {
                 setFunctionType(functionType)
                 setActiveIndex(actionIndex)
                 
+
+                console.log('asdklasjld currentToken', currentToken)
                 console.log('asdklasjld functionTypeAndactionIndex', functionType, actionIndex)
             } else {
                 console.log('error')
@@ -39,11 +41,19 @@ export default function CalcFunction() {
         }
     }, []);
 
-    return <div style={{display: 'flex', flexDirection: 'column'}}><div>
-        function: {functionType} 
+    return <div style={{display: 'flex', flexDirection: 'column'}}>
+    <div style={{ width: 383, padding: '12px 16px',border: '1px solid rgba(31,35,41, 0.15)' }}>
+        <div style={{fontWeight: 500, display: 'inline'}}> {functionType} </div>
         {'('}{functionParamsCount[functionType]?.map((option, index) => 
-                <div style={{background: activeIndex === index ? 'yellow' : '', display: 'inline'}}>{option},</div>
-            )}{')'}
+        <>
+                <div style={{background: activeIndex === index ? 'yellow' : '', display: 'inline', color: activeIndex === index ? 'black' : 'grey'}}>{option}</div>
+
+                {(index === functionParamsCount[functionType]?.length - 1) ? '' : ','}
+                </>
+            )}{')'}<br />
+    <span style={{width: 213, background: '#f5f6f7', fontSize: 12, padding: '2px 8px', borderRadius: 4, marginTop: 10}}>
+        示例： DATE(2000, 1, 1) = 2000/01/01
+    </span>
     </div>
     {errorInfo ? <div>CST Error: {errorInfo}</div> : null}
     </div>

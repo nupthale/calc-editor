@@ -18,7 +18,12 @@ export class Caret {
 
     set offset(value) {
         this._offset = value
-        updateFunctionParamCursor$.next(this)
+        console.log('alksjdlaksjd', value, this)
+        // 使用keyboard方向键的时候window.getSelection会有滞后
+        // 需要保证在下一帧渲染的时候获取tokenIndex返回
+        setTimeout(() => {
+            updateFunctionParamCursor$.next(this)
+        }, 0)
     }
 
     // 找最左子树node， 判断caret的anchorNode是不是最左子node， 如果是， 就是start
@@ -190,9 +195,6 @@ export class Caret {
             return;
         }
 
-        this.offset++;
-
-        this.updatePos(this.offset);
     }
 
     prev() {

@@ -7,6 +7,8 @@ import { isElement } from "../utils/type";
 import { getOffset, removeZeroSpaceText } from "../utils/util";
 import {Select} from "@/chevrotain/lexer";
 
+import { updateFunctionParamCursor$ } from '../../CalcFunction/observables';
+
 
 export class Manager {
     constructor(editor) {
@@ -27,7 +29,11 @@ export class Manager {
 
     get currentToken() {
         const selection = SelectionUtil.get();
+
+        console.log('asldkajlskd', selection)
+
         const tokenIndex = this.getTokenByChildNodeIndex(selection.anchorNode);
+
         return this.tokens[tokenIndex];
     }
 
@@ -97,6 +103,7 @@ export class Manager {
 
         const firstLevelBlock = childNode.closest(`.x-token`);
         const index = $hosts.indexOf(firstLevelBlock);
+        console.log('alksjdlasjd index', index, firstLevelBlock, childNode)
 
         if (!firstLevelBlock || index < 0) {
             return;
